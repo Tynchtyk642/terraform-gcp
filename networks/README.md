@@ -30,18 +30,18 @@ module "network" {
   subnets = [
     {
       subnet_name     = "presentation-subnet"
-      subnet_ip_range = "10.0.0.0/24"
+      subnet_ip_range = "10.0.1.0/24"
       subnet_region   = "us-central1"
     },
     {
       subnet_name           = "application-subnet"
-      subnet_ip_range       = "10.0.1.0/24"
+      subnet_ip_range       = "10.0.2.0/24"
       subnet_region         = "us-central1"
       subnet_private_access = true
     },
     {
       subnet_name           = "database-subnet"
-      subnet_ip_range       = "10.0.2.0/24"
+      subnet_ip_range       = "10.0.3.0/24"
       subnet_region         = "us-central1"
       subnet_private_access = true
     },
