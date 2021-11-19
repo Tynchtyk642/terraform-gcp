@@ -41,8 +41,8 @@ workflows:
     jobs:
       - build:
           context: GOOGLE_CREDENTIALS
-           
-      - Attention When you will approve:
+
+      - hold:
           type: approval 
           
       - build2:
