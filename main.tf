@@ -1,7 +1,7 @@
 terraform {
   backend "gcs" {
-    bucket = ""
-    prefix = ""
+    bucket = "beki-my-bucket-for-circleci"
+    prefix = "terraform/state"
   }
   required_providers {
     google = {
@@ -12,7 +12,7 @@ terraform {
 }
 
 provider "google" {
-  credentials = file(var.credentials_file_path)
+  # credentials = file(var.credentials_file_path)
 
   project = var.project_id
   region  = var.region

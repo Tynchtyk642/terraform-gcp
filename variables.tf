@@ -5,10 +5,10 @@ variable "project_id" {
 }
 
 // Write to "default" the path to your credentials file
-variable "credentials_file_path" {
-  type    = string
-  default = "playground-s-11-a55bb878-dbd43cfe92f9.json"
-}
+# variable "credentials_file_path" {
+#   type    = string
+#   default = "playground-s-11-a55bb878-dbd43cfe92f9.json"
+# }
 
 // Write to "default" the region where by default your resource will created
 variable "region" {
