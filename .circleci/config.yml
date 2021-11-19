@@ -40,7 +40,8 @@ workflows:
   build:
     jobs:
       - build:
-          context: GOOGLE_CREDENTIALS 
+          context: GOOGLE_CREDENTIALS
+           
       - Attention When you will approve:
           type: approval 
           
