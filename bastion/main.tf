@@ -7,20 +7,20 @@ resource "google_service_account" "bastion" {
   display_name = "GKE Bastion Service Account"
 }
 
-resource "google_compute_firewall" "bastion-ssh" {
-  name = format("%s-basstion-ssh", var.bastion_name)
-  network = var.vpc_name
-  direction = "INGRESS"
-  project = var.project_id
-  source_ranges = [ "0.0.0.0/0" ]
+# resource "google_compute_firewall" "bastion-ssh" {
+#   name = format("%s-basstion-ssh", var.bastion_name)
+#   network = var.vpc_name
+#   direction = "INGRESS"
+#   project = var.project_id
+#   source_ranges = [ "0.0.0.0/0" ]
 
-  allow {
-    protocol = "tcp"
-    ports = ["22"]
-  }
+#   allow {
+#     protocol = "tcp"
+#     ports = ["22"]
+#   }
 
-  target_tags = ["bastion"]
-}
+#   target_tags = ["bastion"]
+# }
 
 # data "template_file" "startup_script" {
 #   template = <<-EOF
@@ -35,7 +35,7 @@ resource "google_compute_instance" "bastion" {
   name = local.hostname
   machine_type = "e2-micro"
   zone = var.zone
-  tags = [ "bastion" ]
+  tags = [ "public" ]
   project = var.project_id
   boot_disk {
     initialize_params {
@@ -65,26 +65,6 @@ resource "google_compute_instance" "bastion" {
       email = google_service_account.bastion.email
       scopes = ["cloud-platform"]
   }
-
-#   provisioner "local-exec" {
-#     command = <<EOF
-#         READY=""
-#         for i in $(seq 1 20); do
-#           if gcloud compute ssh ${local.hostname} --project ${var.project_id} --zone ${var.region}-b --command uptime; then
-#             READY="yes"
-#             break;
-#           fi
-#           echo "Waiting for ${local.hostname} to initialize..."
-#           sleep 10;
-#         done
-#         if [[ -z $READY ]]; then
-#           echo "${local.hostname} failed to start in time."
-#           echo "Please verify that the instance starts and then re-run `terraform apply`"
-#           exit 1
-#         fi
-# EOF
-#   }
-
   scheduling {
     preemptible = true
     automatic_restart = false

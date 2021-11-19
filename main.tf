@@ -1,4 +1,8 @@
 terraform {
+  backend "gcs" {
+    bucket = ""
+    prefix = ""
+  }
   required_providers {
     google = {
       source  = "hashicorp/google"
@@ -63,8 +67,8 @@ module "google_networks" {
       source_tags = null
 
       allow = [{
-        protocol = "all"
-        ports    = null
+        protocol = "tcp"
+        ports    = ["22"]
       }]
       deny = []
     },
