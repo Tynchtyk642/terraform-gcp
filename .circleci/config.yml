@@ -48,7 +48,8 @@ workflows:
 
       - hold:
           type: approval 
-          
+          requires: 
+            - build
       - build2:
           context: GOOGLE_CREDENTIALS
           requires: 
@@ -57,4 +58,5 @@ workflows:
       - destroy:
           context: GOOGLE_CREDENTIALS
           type: approval
-          
+          requires: 
+            - build
