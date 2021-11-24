@@ -1,7 +1,7 @@
 // Write to "default" the project name where the resource will created
 variable "project_id" {
   type    = string
-  default = "playground-s-11-a55bb878"
+  default = "unified-chess-331509"
 }
 
 // Write to "default" the path to your credentials file
